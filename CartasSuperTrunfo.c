@@ -1,4 +1,4 @@
-  #include <stdio.h>
+#include <stdio.h>
 #include <string.h>
 
 int main() {
@@ -7,7 +7,7 @@ int main() {
     char nome1[50] = "Brasil";
     int populacao1 = 214000000;
     float area1 = 8515767.0;
-    float pib1 = 1868.0; // em bilhões
+    float pib1 = 1868.0;
     int pontos1 = 100;
     float densidade1 = populacao1 / area1;
 
@@ -15,100 +15,122 @@ int main() {
     char nome2[50] = "Argentina";
     int populacao2 = 46000000;
     float area2 = 2780400.0;
-    float pib2 = 632.0; // em bilhões
+    float pib2 = 632.0;
     int pontos2 = 60;
     float densidade2 = populacao2 / area2;
 
-    int opcao;
+    int atributo1, atributo2;
+    float valor1_c1 = 0, valor1_c2 = 0;
+    float valor2_c1 = 0, valor2_c2 = 0;
 
-    printf("===== SUPER TRUNFO - NIVEL AVENTUREIRO =====\n");
-    printf("Escolha o atributo para comparacao:\n");
+    printf("===== SUPER TRUNFO - NIVEL MESTRE =====\n");
+
+    // ===== MENU PRIMEIRO ATRIBUTO =====
+    printf("\nEscolha o PRIMEIRO atributo:\n");
     printf("1 - Populacao\n");
     printf("2 - Area\n");
     printf("3 - PIB\n");
-    printf("4 - Numero de pontos turisticos\n");
-    printf("5 - Densidade demografica\n");
+    printf("4 - Pontos Turisticos\n");
+    printf("5 - Densidade Demografica\n");
     printf("Opcao: ");
-    scanf("%d", &opcao);
+    scanf("%d", &atributo1);
 
-    printf("\n===== RESULTADO =====\n");
+    // ===== MENU SEGUNDO ATRIBUTO (dinâmico) =====
+    printf("\nEscolha o SEGUNDO atributo (diferente do primeiro):\n");
 
-    switch(opcao) {
+    if (atributo1 != 1) printf("1 - Populacao\n");
+    if (atributo1 != 2) printf("2 - Area\n");
+    if (atributo1 != 3) printf("3 - PIB\n");
+    if (atributo1 != 4) printf("4 - Pontos Turisticos\n");
+    if (atributo1 != 5) printf("5 - Densidade Demografica\n");
 
+    printf("Opcao: ");
+    scanf("%d", &atributo2);
+
+    if (atributo1 == atributo2) {
+        printf("Erro: atributos nao podem ser iguais!\n");
+        return 0;
+    }
+
+    // ===== CAPTURA VALORES ATRIBUTO 1 =====
+    switch(atributo1) {
         case 1:
-            printf("Atributo: Populacao\n");
-            printf("%s: %d\n", nome1, populacao1);
-            printf("%s: %d\n", nome2, populacao2);
-
-            if (populacao1 > populacao2) {
-                printf("Vencedor: %s\n", nome1);
-            } else if (populacao2 > populacao1) {
-                printf("Vencedor: %s\n", nome2);
-            } else {
-                printf("Empate!\n");
-            }
+            valor1_c1 = populacao1;
+            valor1_c2 = populacao2;
             break;
-
         case 2:
-            printf("Atributo: Area\n");
-            printf("%s: %.2f\n", nome1, area1);
-            printf("%s: %.2f\n", nome2, area2);
-
-            if (area1 > area2) {
-                printf("Vencedor: %s\n", nome1);
-            } else if (area2 > area1) {
-                printf("Vencedor: %s\n", nome2);
-            } else {
-                printf("Empate!\n");
-            }
+            valor1_c1 = area1;
+            valor1_c2 = area2;
             break;
-
         case 3:
-            printf("Atributo: PIB\n");
-            printf("%s: %.2f\n", nome1, pib1);
-            printf("%s: %.2f\n", nome2, pib2);
-
-            if (pib1 > pib2) {
-                printf("Vencedor: %s\n", nome1);
-            } else if (pib2 > pib1) {
-                printf("Vencedor: %s\n", nome2);
-            } else {
-                printf("Empate!\n");
-            }
+            valor1_c1 = pib1;
+            valor1_c2 = pib2;
             break;
-
         case 4:
-            printf("Atributo: Numero de pontos turisticos\n");
-            printf("%s: %d\n", nome1, pontos1);
-            printf("%s: %d\n", nome2, pontos2);
-
-            if (pontos1 > pontos2) {
-                printf("Vencedor: %s\n", nome1);
-            } else if (pontos2 > pontos1) {
-                printf("Vencedor: %s\n", nome2);
-            } else {
-                printf("Empate!\n");
-            }
+            valor1_c1 = pontos1;
+            valor1_c2 = pontos2;
             break;
-
         case 5:
-            printf("Atributo: Densidade demografica\n");
-            printf("%s: %.4f\n", nome1, densidade1);
-            printf("%s: %.4f\n", nome2, densidade2);
-
-            // REGRA INVERTIDA
-            if (densidade1 < densidade2) {
-                printf("Vencedor: %s\n", nome1);
-            } else if (densidade2 < densidade1) {
-                printf("Vencedor: %s\n", nome2);
-            } else {
-                printf("Empate!\n");
-            }
+            valor1_c1 = densidade1;
+            valor1_c2 = densidade2;
             break;
-
         default:
             printf("Opcao invalida!\n");
+            return 0;
     }
+
+    // ===== CAPTURA VALORES ATRIBUTO 2 =====
+    switch(atributo2) {
+        case 1:
+            valor2_c1 = populacao1;
+            valor2_c2 = populacao2;
+            break;
+        case 2:
+            valor2_c1 = area1;
+            valor2_c2 = area2;
+            break;
+        case 3:
+            valor2_c1 = pib1;
+            valor2_c2 = pib2;
+            break;
+        case 4:
+            valor2_c1 = pontos1;
+            valor2_c2 = pontos2;
+            break;
+        case 5:
+            valor2_c1 = densidade1;
+            valor2_c2 = densidade2;
+            break;
+        default:
+            printf("Opcao invalida!\n");
+            return 0;
+    }
+
+    // ===== AJUSTE REGRA DENSIDADE (menor vence) =====
+    if (atributo1 == 5) {
+        valor1_c1 = -valor1_c1;
+        valor1_c2 = -valor1_c2;
+    }
+
+    if (atributo2 == 5) {
+        valor2_c1 = -valor2_c1;
+        valor2_c2 = -valor2_c2;
+    }
+
+    // ===== SOMA DOS ATRIBUTOS =====
+    float soma1 = valor1_c1 + valor2_c1;
+    float soma2 = valor1_c2 + valor2_c2;
+
+    printf("\n===== RESULTADO =====\n");
+    printf("%s - Soma: %.2f\n", nome1, soma1);
+    printf("%s - Soma: %.2f\n", nome2, soma2);
+
+    // ===== OPERADOR TERNÁRIO =====
+    printf("%s\n",
+        (soma1 > soma2) ? nome1 :
+        (soma2 > soma1) ? nome2 :
+        "Empate!"
+    );
 
     return 0;
 }
